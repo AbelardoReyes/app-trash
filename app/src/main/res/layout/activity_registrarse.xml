@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registrarse">
+    tools:context=".Registrarse"
+    android:background="@drawable/login"
+    >
 
     <Button
         android:id="@+id/enviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enviar"
+        android:text="Aceptar"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

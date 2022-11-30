@@ -4,9 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PanelUsuario"
+    tools:context=".usuario.PanelUsuario"
     android:background="@drawable/usuario"
     >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="156dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/perfil"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/chickshicks" />
 
     <TextView
         android:id="@+id/textView5"
@@ -22,6 +35,69 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="275dp"
+        android:layout_height="138dp"
+        android:layout_marginBottom="296dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.038"
+        app:srcCompat="@drawable/user" />
+
+    <Button
+        android:id="@+id/verCarritos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Ver Carritos"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/agregarCarrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Agregar Carrito"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Ver Perfil"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="239dp"
+        android:layout_height="186dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/agregarCarrito"
+        app:layout_constraintVertical_bias="0.155"
+        app:srcCompat="@drawable/almacen" />
+
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -35,80 +111,4 @@
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="275dp"
-        android:layout_height="138dp"
-        android:layout_marginBottom="296dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.038"
-        app:srcCompat="@drawable/user" />
-
-    <Button
-        android:id="@+id/perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:text="Ver Perfil"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="156dp"
-        android:layout_height="134dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/perfil"
-        app:srcCompat="@drawable/chickshicks" />
-
-    <Button
-        android:id="@+id/agregarCarrito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:text="Agregar Carrito"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="239dp"
-        android:layout_height="186dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/agregarCarrito"
-        app:layout_constraintVertical_bias="0.188"
-        app:srcCompat="@drawable/almacen" />
-
-    <Button
-        android:id="@+id/verCarritos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver Carritos"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,10 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import com.example.trash.clases.SingletonRequest;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.trash.usuario.PanelUsuario;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -40,7 +44,7 @@ public class Login extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "http://192.168.253.63:8000/api/login";
+                String url = "http://192.168.1.72:8000/api/login";
                 JSONObject login = new JSONObject();
                 try {
                     login.put("email", email.getText().toString());
@@ -56,7 +60,7 @@ public class Login extends AppCompatActivity {
                         Gson gson = new Gson();
                         Respuesta respuesta = gson.fromJson(response.toString(), Respuesta.class);
                         if (respuesta.getResponse().equals("ok")) {
-                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            Intent intent = new Intent(Login.this, PanelUsuario.class);
                             startActivity(intent);
                         }
                     }
@@ -64,8 +68,10 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.i("Error", error.toString());
+                        Toast.makeText(Login.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
                     }
                 });
+                SingletonRequest.getInstance(Login.this).addToRequestQue(usuario);
             }
         });
     }
