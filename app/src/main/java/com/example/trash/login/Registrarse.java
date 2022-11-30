@@ -1,8 +1,9 @@
-package com.example.trash;
+package com.example.trash.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
+import com.example.trash.R;
 import com.example.trash.clases.SingletonRequest;
 
 import android.content.Intent;
@@ -16,7 +17,6 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.trash.clases.SingletonRequest;
 
 import org.json.JSONObject;
 

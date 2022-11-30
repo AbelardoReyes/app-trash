@@ -1,8 +1,10 @@
-package com.example.trash;
+package com.example.trash.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+
+import com.example.trash.R;
 import  com.example.trash.clases.Respuesta;
 import android.os.Bundle;
 import android.util.Log;

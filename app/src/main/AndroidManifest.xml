@@ -37,10 +37,10 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Registrarse"
+            android:name=".login.Registrarse"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".login.Login"
             android:exported="false" />
         <activity
             android:name=".Splash"

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
+import com.example.trash.login.Login;
+
 public class Splash extends AppCompatActivity {
 
     @Override
