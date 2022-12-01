@@ -7,7 +7,6 @@
     tools:context=".usuario.PerfilUsuario"
     android:background="@drawable/usuario"
     >
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -30,10 +29,10 @@
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toEndOf="@+id/iamge"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iamge"
+        app:layout_constraintVertical_bias="0.054" />
 
     <TextView
         android:id="@+id/t2"
@@ -44,33 +43,33 @@
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toEndOf="@+id/iamge"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/t1"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.066" />
 
     <TextView
         android:id="@+id/t3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="email:"
+        android:text="your email is:"
         android:textColor="@color/black"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iamge"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintTop_toBottomOf="@+id/t2"
+        app:layout_constraintVertical_bias="0.105" />
 
     <ImageView
         android:id="@+id/iamge"
-        android:layout_width="121dp"
-        android:layout_height="153dp"
+        android:layout_width="156dp"
+        android:layout_height="180dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintVertical_bias="0.0"
@@ -82,27 +81,13 @@
         android:layout_height="wrap_content"
         android:text="N"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toEndOf="@+id/t1"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.081" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="12dp"
-        android:layout_height="22dp"
-        android:text="N"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
-        app:layout_constraintStart_toEndOf="@+id/t3"
         app:layout_constraintTop_toBottomOf="@+id/iamge"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.054" />
 
     <TextView
         android:id="@+id/phone"
@@ -110,11 +95,38 @@
         android:layout_height="wrap_content"
         android:text="N"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toEndOf="@+id/t2"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintTop_toBottomOf="@+id/iamge"
+        app:layout_constraintVertical_bias="0.206" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="N"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone"
+        app:layout_constraintVertical_bias="0.315" />
+
+    <Button
+        android:id="@+id/actualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualizar Datos"
+        android:backgroundTint="@color/teal_700"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

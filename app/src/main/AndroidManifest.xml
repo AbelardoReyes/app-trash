@@ -13,8 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Trash"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".PanelAdmin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".usuario.PanelUsuario"
             android:exported="false">

@@ -2,10 +2,14 @@ package com.example.trash.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 
+import com.example.trash.PanelAdmin;
 import com.example.trash.R;
 import  com.example.trash.clases.Respuesta;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,32 +53,51 @@ public class Login extends AppCompatActivity {
                 String url = "http://192.168.1.72:8000/api/login";
                 JSONObject login = new JSONObject();
                 try {
-                    login.put("email", email.getText().toString());
                     login.put("password", password.getText().toString());
+                    login.put("email", email.getText().toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 JsonObjectRequest usuario = new JsonObjectRequest
                         (Request.Method.POST, url, login, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.i("Response", response.toString());
-                        Gson gson = new Gson();
-                        Respuesta respuesta = gson.fromJson(response.toString(), Respuesta.class);
-                        if (respuesta.getResponse().equals("ok")) {
-                            Intent intent = new Intent(Login.this, PanelUsuario.class);
-                            startActivity(intent);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.i("Error", error.toString());
-                        Toast.makeText(Login.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Gson gson = new Gson();
+                                Respuesta respuesta = gson.fromJson(response.toString(), Respuesta.class);
+                                if (respuesta.getStatus().equals("201") && respuesta.getRole().equals("3")) {
+                                    Intent intent = new Intent(Login.this, PanelUsuario.class);
+                                    startActivity(intent);
+                                } else {
+                                    Intent intent = new Intent(Login.this, PanelAdmin.class);
+                                    startActivity(intent);
+                                }
+                                Toast.makeText(Login.this, respuesta.getToken(), Toast.LENGTH_SHORT).show();
+                                String token = respuesta.getToken();
+                                guardarToken(token);
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.i("Error", error.toString());
+                                Toast.makeText(Login.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 SingletonRequest.getInstance(Login.this).addToRequestQue(usuario);
+                cargarToken();
             }
+
         });
+    }
+    public void cargarToken() {
+        SharedPreferences preferences = getSharedPreferences("guardarToken", Context.MODE_PRIVATE);
+        String token = preferences.getString("token", "No encontrado");
+
+        Log.i("Token", token);
+    }
+    public void guardarToken(String token){
+        SharedPreferences preferences = getSharedPreferences("guardarToken", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("token", token);
+        editor.commit();
     }
 }

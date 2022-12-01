@@ -36,13 +36,13 @@ public class Registrarse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Aqui se debe enviar el JSON al servidor;
-                String url = "http://192.168.253.63:8000/api/registrarse";
+                String url = "http://192.168.1.72:8000/api/registrarse";
                 JSONObject jsonBody = new JSONObject();
                 try {
                     jsonBody.put("name",nombre.getText().toString());
-                    jsonBody.put("phone",telefono.getText().toString());
-                    jsonBody.put("email",email.getText().toString());
                     jsonBody.put("password",contraseña.getText().toString());
+                    jsonBody.put("email",email.getText().toString());
+                    jsonBody.put("phone_number",telefono.getText().toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -61,8 +61,8 @@ public class Registrarse extends AppCompatActivity {
                             }
                         });
                 SingletonRequest.getInstance(getApplicationContext()).addToRequestQue(jsonObjectRequest);
-                Intent intent = new Intent(Registrarse.this, Login.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(Registrarse.this, Login.class);
+                startActivity(intent);*/
             }
         });
     }
