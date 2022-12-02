@@ -3,6 +3,7 @@ package com.example.trash.clases;
 public class Usuario {
     String name, email, phone_number, password,email_verified_at,remember_token,created_at,updated_at;
     int id;
+    String username, active_key;
 
     public Usuario(String name, String email, String phone_number, String password, String email_verified_at, String remember_token, String created_at, String updated_at, int id) {
         this.name = name;
@@ -23,10 +24,28 @@ public class Usuario {
         this.password = password;
     }
 
-    public Usuario(String name, String email, String phone_number) {
+    public Usuario(String name, String email, String phone_number, String username, String active_key) {
         this.name = name;
         this.email = email;
         this.phone_number = phone_number;
+        this.username = username;
+        this.active_key = active_key;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getActive_key() {
+        return active_key;
+    }
+
+    public void setActive_key(String active_key) {
+        this.active_key = active_key;
     }
 
     public String getName() {

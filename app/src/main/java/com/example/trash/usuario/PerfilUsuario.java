@@ -3,9 +3,12 @@ package com.example.trash.usuario;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import  com.example.trash.clases.DataUsuario;
@@ -31,18 +34,28 @@ import java.util.List;
 import java.util.Map;
 
 public class PerfilUsuario extends AppCompatActivity {
-    TextView name, email, phone_number;
+    TextView name, phone_number, email, username;
+    Button btnAdafruit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
         name = findViewById(R.id.name);
+        btnAdafruit = findViewById(R.id.adafruit);
         email = findViewById(R.id.email);
         phone_number = findViewById(R.id.phone);
+        username = findViewById(R.id.username);
         SharedPreferences preferences = getSharedPreferences("guardarToken", Context.MODE_PRIVATE);
         String token = preferences.getString("token", "No encontrado");
-
         obtenerUsuario(token);
+        btnAdafruit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PerfilUsuario.this, CuentaAdafruit.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void obtenerUsuario(String token) {
@@ -58,8 +71,8 @@ public class PerfilUsuario extends AppCompatActivity {
                             name.setText(usuario.getName());
                             email.setText(usuario.getEmail());
                             phone_number.setText(usuario.getPhone_number());
-                        }
-                        catch (JsonIOException e) {
+                            username.setText(usuario.getUsername());
+                        } catch (JsonIOException e) {
                             e.printStackTrace();
                             Toast.makeText(PerfilUsuario.this, "Error al obtener usuario", Toast.LENGTH_SHORT).show();
                         }
@@ -71,13 +84,13 @@ public class PerfilUsuario extends AppCompatActivity {
                         Toast.makeText(PerfilUsuario.this, "Error al obtener usuario", Toast.LENGTH_SHORT).show();
                     }
                 }) {
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        Map<String, String> headers = new HashMap<String, String>();
-                        headers.put("Authorization", "Bearer " + token);
-                        return headers;
-                    }
-                };
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
         SingletonRequest.getInstance(PerfilUsuario.this).addToRequestQue(usuario);
     }
 }

@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity {
         iniciarSesion = findViewById(R.id.iniciarSesion);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        cargarSession();
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,5 +100,15 @@ public class Login extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("token", token);
         editor.commit();
+    }
+    public void  cargarSession(){
+        SharedPreferences preferences = getSharedPreferences("session_usuario", Context.MODE_PRIVATE);
+        if(preferences.getBoolean("session",true)==true){
+            Intent intent = new Intent(Login.this, PanelUsuario.class);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this, "Inicia Sesion", Toast.LENGTH_SHORT).show();
+        }
     }
 }
