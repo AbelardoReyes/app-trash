@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.trash.PanelAdmin;
+import com.example.trash.admin.PanelAdmin;
 import com.example.trash.R;
 import  com.example.trash.clases.Respuesta;
 
@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "http://192.168.1.72:8000/api/login";
+                String url = "http://trash-api.me:3333/login";
                 JSONObject login = new JSONObject();
                 try {
                     login.put("password", password.getText().toString());

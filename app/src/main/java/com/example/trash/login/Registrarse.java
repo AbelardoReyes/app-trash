@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
 import com.example.trash.R;
+import com.example.trash.clases.Respuesta;
 import com.example.trash.clases.SingletonRequest;
 
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -36,7 +38,7 @@ public class Registrarse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Aqui se debe enviar el JSON al servidor;
-                String url = "http://192.168.1.72:8000/api/registrarse";
+                String urls = "http://trash-api.me:3333/user/register";
                 JSONObject jsonBody = new JSONObject();
                 try {
                     jsonBody.put("name",nombre.getText().toString());
@@ -47,11 +49,18 @@ public class Registrarse extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                        (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                        (Request.Method.POST, urls, jsonBody, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.i("Response", response.toString());
+                                String url;
+                                Gson gson = new Gson();
+                                Respuesta respuesta = gson.fromJson(response.toString(), Respuesta.class);
+                                url = respuesta.getUrl();
                                 Toast.makeText(Registrarse.this, "Tu usuario se registro correctamente!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Registrarse.this, ActivarCuenta.class);
+                                intent.putExtra("url",url);
+                                startActivity(intent);
                             }
                         }, new Response.ErrorListener() {
                             @Override
@@ -61,8 +70,6 @@ public class Registrarse extends AppCompatActivity {
                             }
                         });
                 SingletonRequest.getInstance(getApplicationContext()).addToRequestQue(jsonObjectRequest);
-                /*Intent intent = new Intent(Registrarse.this, Login.class);
-                startActivity(intent);*/
             }
         });
     }

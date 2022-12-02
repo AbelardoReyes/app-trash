@@ -1,12 +1,24 @@
 package com.example.trash.clases;
 
 public class Respuesta {
-    String status,token,role;
+    String status,token,role,url;
 
     public Respuesta(String status, String token, String role) {
         this.status = status;
         this.token = token;
         this.role = role;
+    }
+
+    public Respuesta(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getStatus() {

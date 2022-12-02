@@ -29,7 +29,6 @@ public class Usuario {
         this.email = email;
         this.phone_number = phone_number;
         this.username = username;
-        this.active_key = active_key;
     }
 
     public String getUsername() {
