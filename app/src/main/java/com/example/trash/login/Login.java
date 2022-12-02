@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "http://trash-api.me:3333/login";
+                String url = "http://192.168.1.72:3333/user/login";
                 JSONObject login = new JSONObject();
                 try {
                     login.put("password", password.getText().toString());
@@ -108,6 +108,15 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
         }
         else{
+            Toast.makeText(this, "Inicia Sesion", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void  verificarCuenta() {
+        SharedPreferences preferences = getSharedPreferences("cuenta_inactiva", Context.MODE_PRIVATE);
+        if (preferences.getBoolean("codigo", false) == false) {
+            Intent intent = new Intent(Login.this, ActivarCuenta.class);
+            startActivity(intent);
+        } else {
             Toast.makeText(this, "Inicia Sesion", Toast.LENGTH_SHORT).show();
         }
     }
