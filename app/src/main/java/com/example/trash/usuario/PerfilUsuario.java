@@ -58,7 +58,7 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     public void obtenerUsuario(String token) {
-        String url = "http://192.168.1.72:8000/api/info";
+        String url = "http://192.168.1.72:3333/user";
         JsonObjectRequest usuario = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
@@ -67,10 +67,10 @@ public class PerfilUsuario extends AppCompatActivity {
                             Toast.makeText(PerfilUsuario.this, "Usuario obtenido", Toast.LENGTH_SHORT).show();
                             Gson gson = new Gson();
                             Usuario usuario = gson.fromJson(response.toString(), Usuario.class);
+                            Toast.makeText(PerfilUsuario.this, response.toString(), Toast.LENGTH_SHORT).show();
                             name.setText(usuario.getName());
                             email.setText(usuario.getEmail());
                             phone_number.setText(usuario.getPhone_number());
-                            username.setText(usuario.getUsername());
                         } catch (JsonIOException e) {
                             e.printStackTrace();
                             Toast.makeText(PerfilUsuario.this, "Error al obtener usuario", Toast.LENGTH_SHORT).show();

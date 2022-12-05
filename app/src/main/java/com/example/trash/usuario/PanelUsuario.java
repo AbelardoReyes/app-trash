@@ -23,6 +23,7 @@ public class PanelUsuario extends AppCompatActivity {
         guardarSession();
         cerrar = findViewById(R.id.cerrarSesion);
         btnPerfil = findViewById(R.id.perfil);
+        btnAgregarCarrito = findViewById(R.id.agregarCarrito);
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +40,13 @@ public class PanelUsuario extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PanelUsuario.this, PerfilUsuario.class);
+                startActivity(intent);
+            }
+        });
+        btnAgregarCarrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PanelUsuario.this, NuevoCarrito.class);
                 startActivity(intent);
             }
         });

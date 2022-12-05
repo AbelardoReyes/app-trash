@@ -28,7 +28,6 @@ public class Usuario {
         this.name = name;
         this.email = email;
         this.phone_number = phone_number;
-        this.username = username;
     }
 
     public String getUsername() {

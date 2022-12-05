@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class NuevoCarrito extends AppCompatActivity {
+public class PanelCarrito extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nuevo_carrito);
+        setContentView(R.layout.activity_panel_carrito);
     }
 }
