@@ -25,11 +25,14 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class NuevoCarrito extends AppCompatActivity {
     EditText carName;
     CheckBox geolocalizador, temperatura, peso;
     Button btnEnviar;
-    int idSensores [] = new int[3];
+    public ArrayList<String> miArreglo = new ArrayList<String>();
+    int idSensores [] = new int[4];
     int j=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +55,32 @@ public class NuevoCarrito extends AppCompatActivity {
         JSONArray sensores = new JSONArray();
         String url = "http://192.168.1.72:8000/api/adafruit/addcar";
         if (geolocalizador.isChecked()) {
-            sensores.put(1);
+            idSensores[j] = 1;
+            j++;
+        }
+        else {
+            j=0;
+            idSensores[j] = 0;
+            j++;
         }
         if (temperatura.isChecked()) {
-            sensores.put(2);
+            j=1;
+            idSensores[j] = 2;
+            j++;
+        }else{
+            idSensores[j] = 0;
+            j++;
         }
         if (peso.isChecked()) {
-            sensores.put(3);
+            idSensores[j] = 3;
+            j++;
+        }else {
+            j=2;
+            idSensores[j] = 0;
+            j++;
+        }
+        for (int i = 0; i < idSensores.length; i++) {
+            sensores.put(idSensores[i]);
         }
         Log.d("idSensores", String.valueOf(idSensores));
 
