@@ -2,7 +2,9 @@ package com.example.trash.usuario;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,14 +29,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NuevoCarrito extends AppCompatActivity {
     EditText carName;
     CheckBox geolocalizador, temperatura, peso;
     Button btnEnviar;
     public ArrayList<String> miArreglo = new ArrayList<String>();
-    int idSensores [] = new int[4];
-    int j=0;
+    int idSensores[] = new int[3];
+    int j = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,38 +58,24 @@ public class NuevoCarrito extends AppCompatActivity {
     }
 
     public void enviarDatos() {
+        SharedPreferences preferences = getSharedPreferences("guardarToken", Context.MODE_PRIVATE);
+        String token = preferences.getString("token", "No encontrado");
         JSONArray sensores = new JSONArray();
         String url = "http://192.168.1.72:8000/api/adafruit/addcar";
         if (geolocalizador.isChecked()) {
             idSensores[j] = 1;
             j++;
         }
-        else {
-            j=0;
-            idSensores[j] = 0;
-            j++;
-        }
         if (temperatura.isChecked()) {
-            j=1;
+            j = 1;
             idSensores[j] = 2;
-            j++;
-        }else{
-            idSensores[j] = 0;
             j++;
         }
         if (peso.isChecked()) {
             idSensores[j] = 3;
-            j++;
-        }else {
-            j=2;
-            idSensores[j] = 0;
-            j++;
-        }
+            j++;}
         for (int i = 0; i < idSensores.length; i++) {
-            sensores.put(idSensores[i]);
-        }
-        Log.d("idSensores", String.valueOf(idSensores));
-
+            sensores.put(idSensores[i]);}
         JSONObject carrito = new JSONObject();
         try {
             carrito.put("car_name", carName.getText().toString());
@@ -92,19 +84,26 @@ public class NuevoCarrito extends AppCompatActivity {
             e.printStackTrace();
         }
         Toast.makeText(this, carrito.toString(), Toast.LENGTH_SHORT).show();
-        JsonObjectRequest car = new JsonObjectRequest(Request.Method.POST, url, null,
+        JsonObjectRequest car = new JsonObjectRequest(Request.Method.POST, url, carrito,
                 new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Toast.makeText(NuevoCarrito.this, "Carrito creado", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(NuevoCarrito.this, "Carrito creado", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Error", error.toString());
-                Toast.makeText(NuevoCarrito.this, "Error al enviar datos", Toast.LENGTH_SHORT).show();
+                Log.i("Error", carrito.toString());
             }
-        });
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
         SingletonRequest.getInstance(this).addToRequestQue(car);
     }
 }
