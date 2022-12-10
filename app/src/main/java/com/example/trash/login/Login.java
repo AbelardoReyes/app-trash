@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "http://192.168.1.72:3333/user/login";
+                String url = "http://192.168.1.72:8000/api/user/login";
                 JSONObject login = new JSONObject();
                 try {
                     login.put("password", password.getText().toString());
@@ -65,13 +65,8 @@ public class Login extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 Gson gson = new Gson();
                                 Respuesta respuesta = gson.fromJson(response.toString(), Respuesta.class);
-                                if (respuesta.getStatus().equals("201") && respuesta.getRole().equals("3")) {
                                     Intent intent = new Intent(Login.this, PanelUsuario.class);
                                     startActivity(intent);
-                                } else {
-                                    Intent intent = new Intent(Login.this, PanelAdmin.class);
-                                    startActivity(intent);
-                                }
                                 Toast.makeText(Login.this, respuesta.getToken(), Toast.LENGTH_SHORT).show();
                                 String token = respuesta.getToken();
                                 guardarToken(token);
