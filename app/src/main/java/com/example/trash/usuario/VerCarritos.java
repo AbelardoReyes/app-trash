@@ -20,6 +20,7 @@ import com.example.trash.Adapters.CarritoAdapter;
 import com.example.trash.R;
 import com.example.trash.clases.Carrito;
 import com.example.trash.clases.ResponseCars;
+import com.example.trash.clases.SingletonRequest;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -61,7 +62,7 @@ public class VerCarritos extends AppCompatActivity {
                 Gson gson = new Gson();
                 ResponseCars carrito = gson.fromJson(String.valueOf(response), ResponseCars.class);
                 List<Carrito> results = carrito.getCars();
-                CarritoAdapter adapter = new CarritoAdapter((ArrayList<Carrito>) results);
+                CarritoAdapter adapter = new CarritoAdapter(results);
                 setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
@@ -77,5 +78,6 @@ public class VerCarritos extends AppCompatActivity {
                 return headers;
             }
         };
+        SingletonRequest.getInstance(getApplicationContext()).addToRequestQue(jsonObjectRequest);
     }
 }

@@ -14,11 +14,12 @@ import com.example.trash.R;
 import com.example.trash.clases.Carrito;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.MyViewHolder>{
-    private ArrayList<Carrito> CarritoList;
+    private List<Carrito> CarritoList;
 
-    public CarritoAdapter(ArrayList<Carrito> carritoList) {
+    public CarritoAdapter(List<Carrito> carritoList) {
         CarritoList = carritoList;
     }
 

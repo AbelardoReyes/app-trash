@@ -38,7 +38,7 @@ public class Registrarse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Aqui se debe enviar el JSON al servidor;
-                String urls = "http://192.168.1.72:3333/user/register";
+                String urls = "https://trash-api.me/api/user/register";
                 JSONObject jsonBody = new JSONObject();
                 try {
                     jsonBody.put("name",nombre.getText().toString());
