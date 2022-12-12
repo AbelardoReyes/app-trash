@@ -34,7 +34,7 @@ import java.util.Map;
 
 public class NuevoCarrito extends AppCompatActivity {
     EditText carName;
-    CheckBox geolocalizador, temperatura, peso;
+    CheckBox tapa, temperatura;
     Button btnEnviar;
     public ArrayList<String> miArreglo = new ArrayList<String>();
     int idSensores[] = new int[3];
@@ -44,9 +44,8 @@ public class NuevoCarrito extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo_carrito);
-        geolocalizador = findViewById(R.id.geolocalizador);
+        tapa = findViewById(R.id.tapa);
         temperatura = findViewById(R.id.tempearatura);
-        peso = findViewById(R.id.peso);
         carName = findViewById(R.id.carName);
         btnEnviar = findViewById(R.id.enviarAdafruit);
         btnEnviar.setOnClickListener(new View.OnClickListener() {
@@ -62,18 +61,16 @@ public class NuevoCarrito extends AppCompatActivity {
         String token = preferences.getString("token", "No encontrado");
         JSONArray sensores = new JSONArray();
         String url = "http://192.168.1.72:8000/api/adafruit/addcar";
-        if (geolocalizador.isChecked()) {
-            idSensores[j] = 1;
-            j++;
-        }
-        if (temperatura.isChecked()) {
-            j = 1;
+        if (tapa.isChecked()) {
             idSensores[j] = 2;
             j++;
         }
-        if (peso.isChecked()) {
+        if (temperatura.isChecked()) {
+            idSensores[j] = 1;
+            j++;
             idSensores[j] = 3;
-            j++;}
+            j++;
+        }
         for (int i = 0; i < idSensores.length; i++) {
             sensores.put(idSensores[i]);}
         JSONObject carrito = new JSONObject();
