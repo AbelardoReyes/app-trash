@@ -55,7 +55,7 @@ public class VerCarritos extends AppCompatActivity {
         String token = preferences.getString("token", "No encontrado");
 
         Log.i("Token", token);
-        String url = "http://192.168.1.6:8000/api/adafruit/getcars";
+        String url = "https://trash-api.me/api/adafruit/getcars";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

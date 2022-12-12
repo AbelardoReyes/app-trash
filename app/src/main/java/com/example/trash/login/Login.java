@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Login.this, PanelUsuario.class);
                 startActivity(intent);
-                String url = "http://192.168.1.6:8000/api/user/login";
+                String url = "https://trash-api.me/api/user/login";
                 JSONObject login = new JSONObject();
                 try {
                     login.put("password", password.getText().toString());

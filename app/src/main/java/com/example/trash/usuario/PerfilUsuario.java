@@ -58,7 +58,7 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     public void obtenerUsuario(String token) {
-        String url = "http://192.168.1.6:8000/api/user";
+        String url = "https://trash-api.me/api/user";
         JsonObjectRequest usuario = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
