@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -38,6 +39,7 @@ public class VerCarritos extends AppCompatActivity {
         setContentView(R.layout.activity_ver_carritos);
         recyclerview = findViewById(R.id.recyclador);
         CarritoList = new ArrayList<>();
+        Toast.makeText(this, "Hola", Toast.LENGTH_SHORT).show();
         setGetCarrito();
     }
 
@@ -50,6 +52,8 @@ public class VerCarritos extends AppCompatActivity {
     private void setGetCarrito() {
         SharedPreferences preferences = getSharedPreferences("guardarToken", Context.MODE_PRIVATE);
         String token = preferences.getString("token", "No encontrado");
+
+        Log.i("Token", token);
         String url = "http://192.168.1.6:8000/api/adafruit/getcars";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -63,7 +67,7 @@ public class VerCarritos extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error al obtener los carritos", Toast.LENGTH_SHORT).show();
+                Log.i("Error", error.toString());
             }
         }){
             @Override
