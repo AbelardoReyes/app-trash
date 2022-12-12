@@ -6,6 +6,12 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.trash.Adapters.BluetoothAdapterLista;
 import com.example.trash.Models.Bluetooth;
 import android.Manifest;
@@ -13,7 +19,9 @@ import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +30,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -30,7 +39,10 @@ import android.widget.Toast;
 import com.example.trash.Adapters.BluetoothAdapterLista;
 import com.example.trash.Models.Bluetooth;
 import com.example.trash.R;
+import com.example.trash.clases.ResponseAdafruit;
+import com.example.trash.clases.SingletonRequest;
 import com.example.trash.socket.ConnectedThread;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +51,9 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -47,6 +61,10 @@ import io.github.controlwear.virtual.joystick.android.JoystickView;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView txtblue, mBluetoothStatus, mTextViewAngleRight, mTextViewStrengthRight, mTextViewCoordinateRight;
+    TextView txtTapa;
+    TextView txtHumedad;
+    TextView txtTemperatura;
+    Button btnPedirDatos;
     Switch btnconectar;
     BluetoothAdapter mBluetoothAdapter;
     List<Bluetooth> ListaBluetooth;
@@ -75,8 +93,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         mBluetoothStatus = (TextView) findViewById(R.id.mBluetoothStatus);
         SpnListaBluetooth = (Spinner) findViewById(R.id.SpnListaBluetooth);
+        btnPedirDatos = (Button) findViewById(R.id.pedirDatosAdafruit);
+        txtTapa = (TextView) findViewById(R.id.adafruitTapa);
+        txtHumedad = (TextView) findViewById(R.id.adafruitHumedad);
+        txtTemperatura = (TextView) findViewById(R.id.adafruitTemperatura);
         ListaBluetooth = new ArrayList<>();
         btnconectar = (Switch) findViewById(R.id.btnconectar);
+        pedirDatosAdafruit();
+
+        btnPedirDatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pedirDatosAdafruit();
+            }
+        });
         btnconectar.setOnCheckedChangeListener((v,i) -> {
             if(!mBluetoothAdapter.isEnabled()) {
                 bluetoothOn();
@@ -258,5 +288,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         }
         return device.createRfcommSocketToServiceRecord(BT_MODULE_UUID);
+    }
+    private void pedirDatosAdafruit(){
+        SharedPreferences preferences = getSharedPreferences("guardarToken", Context.MODE_PRIVATE);
+        String token = preferences.getString("token", "No encontrado");
+        String url = "https://trash-api.me/api/adafruit/getdata";
+        JsonObjectRequest pedirDatosAdafruit = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Gson gson = new Gson();
+                ResponseAdafruit responseAdafruit =
+                        gson.fromJson(response.toString(), ResponseAdafruit.class);
+                txtTapa.setText(responseAdafruit.getTapa());
+                txtHumedad.setText(responseAdafruit.getHumedad());
+                txtTemperatura.setText(responseAdafruit.getTemperatura());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        SingletonRequest.getInstance(getApplicationContext()).addToRequestQue(pedirDatosAdafruit);
     }
 }
