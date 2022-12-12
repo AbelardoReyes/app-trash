@@ -51,8 +51,6 @@ public class Login extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, PanelUsuario.class);
-                startActivity(intent);
                 String url = "https://trash-api.me/api/user/login";
                 JSONObject login = new JSONObject();
                 try {
@@ -67,11 +65,17 @@ public class Login extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 Gson gson = new Gson();
                                 Respuesta respuesta = gson.fromJson(response.toString(), Respuesta.class);
+                                Log.i("Respuesta", response.toString());
+                                if(respuesta.getIs_active().equals("0")){
+                                    Intent intent = new Intent(Login.this, ActivarCuenta.class);
+                                    startActivity(intent);
+                                }else if(respuesta.getStatus().equals("200")){
                                     Intent intent = new Intent(Login.this, PanelUsuario.class);
                                     startActivity(intent);
-                                Toast.makeText(Login.this, respuesta.getToken(), Toast.LENGTH_SHORT).show();
-                                String token = respuesta.getToken();
-                                guardarToken(token);
+                                    Toast.makeText(Login.this, respuesta.getToken(), Toast.LENGTH_SHORT).show();
+                                    String token = respuesta.getToken();
+                                    guardarToken(token);
+                                }
                             }
                         }, new Response.ErrorListener() {
                             @Override
