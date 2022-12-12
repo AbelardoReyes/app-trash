@@ -50,7 +50,7 @@ public class PanelUsuario extends AppCompatActivity {
                 Log.i("Token", token);
                 SharedPreferences preferences1 = getSharedPreferences("session_usuario", Context.MODE_PRIVATE);
                 boolean session = false;
-                SharedPreferences.Editor editor = preferences.edit();
+                SharedPreferences.Editor editor = preferences1.edit();
                 editor.putBoolean("session",session);
                 editor.commit();
                 Intent intent = new Intent(PanelUsuario.this, Login.class);

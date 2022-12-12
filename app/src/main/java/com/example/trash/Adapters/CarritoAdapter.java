@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trash.R;
+import com.example.trash.Views.MainActivity;
 import com.example.trash.clases.Carrito;
 
 import java.util.ArrayList;
@@ -28,6 +29,13 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.MyViewHo
         public MyViewHolder(final View view){
             super(view);
             txtname = view.findViewById(R.id.nombreCarrito);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(view.getContext(), MainActivity.class);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
