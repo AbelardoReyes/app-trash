@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import com.example.trash.usuario.VerCarritos;
 import com.example.trash.R;
 import com.example.trash.Views.MainActivity;
 import com.example.trash.login.Login;
@@ -55,7 +55,7 @@ public class PanelUsuario extends AppCompatActivity {
         btnVerCarrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PanelUsuario.this, MainActivity.class);
+                Intent intent = new Intent(PanelUsuario.this, VerCarritos.class);
                 startActivity(intent);
             }
         });

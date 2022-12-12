@@ -89,6 +89,8 @@ public class NuevoCarrito extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Toast.makeText(NuevoCarrito.this, "Carrito creado", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(NuevoCarrito.this, PanelUsuario.class);
+                        startActivity(intent);
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -8,6 +8,66 @@
     android:background="@drawable/usuario"
     >
 
+
+    <io.github.controlwear.virtual.joystick.android.JoystickView
+        android:id="@+id/joystickView_right2"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:JV_backgroundColor="#0D3E69"
+        app:JV_borderColor="#16B2E4"
+        app:JV_borderWidth="4dp"
+        app:JV_buttonColor="#FF8000"
+        app:JV_buttonSizeRatio="15%"
+
+        app:JV_fixedCenter="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <LinearLayout
+        android:layout_width="318dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="1dp"
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toTopOf="@+id/joystickView_right2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+
+        <TextView
+            android:id="@+id/textView_angle_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:text="0°" />
+
+
+        <TextView
+            android:id="@+id/textView_strength_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:layout_below="@+id/textView_angle_right"
+            android:text="0%" />
+
+
+        <TextView
+            android:id="@+id/textView_coordinate_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:text="x050:x050" />
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="0dp"
@@ -33,78 +93,23 @@
             android:layout_height="24dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="5"
-            android:text="No device connected"
+            android:text="Hello World!"
             android:textAlignment="center"
             android:textColor="@color/white" />
 
-    </LinearLayout>
-
-    <io.github.controlwear.virtual.joystick.android.JoystickView
-        android:id="@+id/joystickView_right"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:JV_backgroundColor="#11548F"
-        app:JV_borderColor="#082743"
-        app:JV_borderWidth="4dp"
-        app:JV_buttonColor="#FF8000"
-        app:JV_buttonSizeRatio="15%"
-
-        app:JV_fixedCenter="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintVertical_bias="0.821" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="127dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/joystickView_right"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintVertical_bias="0.029">
-
-
-        <TextView
-            android:id="@+id/textView_angle_right"
-            android:layout_width="wrap_content"
+        <Switch
+            android:id="@+id/btnconectar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/black"
-            android:textSize="30dp" />
-
-
-        <TextView
-            android:id="@+id/textView_strength_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_angle_right"
-            android:text="0"
-            android:textColor="@color/black"
-            android:textSize="30dp" />
-
+            android:layout_weight="2"
+            android:text="Bluetooth"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.58"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.89"></Switch>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/verDatosSensores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver Datos"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintVertical_bias="0.012" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

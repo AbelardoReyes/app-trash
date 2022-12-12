@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mBluetoothStatus = (TextView) findViewById(R.id.mBluetoothStatus);
         SpnListaBluetooth = (Spinner) findViewById(R.id.SpnListaBluetooth);
         ListaBluetooth = new ArrayList<>();
-        //btnconectar = (Switch) findViewById(R.id.btnconectar);
+        btnconectar = (Switch) findViewById(R.id.btnconectar);
         btnconectar.setOnCheckedChangeListener((v,i) -> {
             if(!mBluetoothAdapter.isEnabled()) {
                 bluetoothOn();
@@ -114,9 +114,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         mTextViewAngleRight = (TextView) findViewById(R.id.textView_angle_right);
         mTextViewStrengthRight = (TextView) findViewById(R.id.textView_strength_right);
-        //mTextViewCoordinateRight = findViewById(R.id.textView_coordinate_right);
+        mTextViewCoordinateRight = findViewById(R.id.textView_coordinate_right);
 
-        final JoystickView joystickRight = (JoystickView) findViewById(R.id.joystickView_right);
+        final JoystickView joystickRight = (JoystickView) findViewById(R.id.joystickView_right2);
 
 
         joystickRight.setOnMoveListener(new JoystickView.OnMoveListener() {
