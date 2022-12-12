@@ -51,7 +51,9 @@ public class Login extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "http://192.168.1.72:8000/api/user/login";
+                Intent intent = new Intent(Login.this, PanelUsuario.class);
+                startActivity(intent);
+                String url = "http://192.168.1.6:8000/api/user/login";
                 JSONObject login = new JSONObject();
                 try {
                     login.put("password", password.getText().toString());

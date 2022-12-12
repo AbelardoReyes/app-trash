@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.trash.R;
+import com.example.trash.Views.MainActivity;
 import com.example.trash.login.Login;
 
 public class PanelUsuario extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class PanelUsuario extends AppCompatActivity {
         cerrar = findViewById(R.id.cerrarSesion);
         btnPerfil = findViewById(R.id.perfil);
         btnAgregarCarrito = findViewById(R.id.agregarCarrito);
+        btnVerCarrito = findViewById(R.id.verCarritos);
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +49,13 @@ public class PanelUsuario extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PanelUsuario.this, NuevoCarrito.class);
+                startActivity(intent);
+            }
+        });
+        btnVerCarrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PanelUsuario.this, MainActivity.class);
                 startActivity(intent);
             }
         });
