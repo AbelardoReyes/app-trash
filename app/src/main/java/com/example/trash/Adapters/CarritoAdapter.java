@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,8 +27,10 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView txtname;
+        private ImageView imagen;
         public MyViewHolder(final View view){
             super(view);
+            imagen = view.findViewById(R.id.imageView4);
             txtname = view.findViewById(R.id.nombreCarrito);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -50,6 +53,7 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.MyViewHo
     public void onBindViewHolder(@NonNull CarritoAdapter.MyViewHolder holder, int position) {
         String name = CarritoList.get(position).getName();
         holder.txtname.setText(name);
+        holder.imagen.setImageResource(R.drawable.imagencarrito);
     }
 
     @Override
