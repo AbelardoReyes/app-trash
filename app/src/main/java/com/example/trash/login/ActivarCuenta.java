@@ -22,7 +22,6 @@ import com.example.trash.usuario.PanelUsuario;
 import org.json.JSONObject;
 
 public class ActivarCuenta extends AppCompatActivity {
-    String ruta = "http://192.168.1.72:3333";
     Button btnenviarCodigo;
     EditText N1, N2, N3, N4;
     String code;
@@ -34,7 +33,7 @@ public class ActivarCuenta extends AppCompatActivity {
         //recibir datos
         Bundle extras = getIntent().getExtras();
         verficarCuenta();
-        String url = ruta + extras.getString("url");
+        String url =  extras.getString("url");
         Toast.makeText(this, "la url es " + url, Toast.LENGTH_SHORT).show();
 
         btnenviarCodigo = findViewById(R.id.enviarCodigo);

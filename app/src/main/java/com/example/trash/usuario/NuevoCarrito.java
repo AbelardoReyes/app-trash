@@ -61,7 +61,7 @@ public class NuevoCarrito extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("guardarToken", Context.MODE_PRIVATE);
         String token = preferences.getString("token", "No encontrado");
         JSONArray sensores = new JSONArray();
-        String url = "http://192.168.1.72:8000/api/adafruit/addcar";
+        String url = "https://trash-api.me/api/adafruit/addcar";
         if (geolocalizador.isChecked()) {
             idSensores[j] = 1;
             j++;
