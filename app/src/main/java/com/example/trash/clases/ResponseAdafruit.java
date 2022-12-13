@@ -1,12 +1,13 @@
 package com.example.trash.clases;
 
 public class ResponseAdafruit {
-    String tapa,humedad,temperatura;
+    String tapa,humedad,temperatura,distancia;
 
-    public ResponseAdafruit(String tapa, String humedad, String temperatura) {
+    public ResponseAdafruit(String tapa, String humedad, String temperatura, String distancia) {
         this.tapa = tapa;
         this.humedad = humedad;
         this.temperatura = temperatura;
+        this.distancia = distancia;
     }
 
     public String getTapa() {
@@ -31,5 +32,13 @@ public class ResponseAdafruit {
 
     public void setTemperatura(String temperatura) {
         this.temperatura = temperatura;
+    }
+
+    public String getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(String distancia) {
+        this.distancia = distancia;
     }
 }

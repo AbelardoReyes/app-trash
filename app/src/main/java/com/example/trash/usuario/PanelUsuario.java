@@ -99,7 +99,7 @@ public class PanelUsuario extends AppCompatActivity {
             }
         });
     }
-    public void guardarSession(){
+    private void guardarSession(){
         SharedPreferences preferences = getSharedPreferences("session_usuario", Context.MODE_PRIVATE);
         boolean session = true;
         SharedPreferences.Editor editor = preferences.edit();

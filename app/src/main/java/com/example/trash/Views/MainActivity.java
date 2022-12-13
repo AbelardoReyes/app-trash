@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView txtTapa;
     TextView txtHumedad;
     TextView txtTemperatura;
+    TextView txtdistancia;
     Button btnPedirDatos;
     Switch btnconectar;
     BluetoothAdapter mBluetoothAdapter;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         btnPedirDatos = (Button) findViewById(R.id.pedirDatosAdafruit);
         txtTapa = (TextView) findViewById(R.id.adafruitTapa);
         txtHumedad = (TextView) findViewById(R.id.adafruitHumedad);
+        txtdistancia = (TextView) findViewById(R.id.distancia);
         txtTemperatura = (TextView) findViewById(R.id.adafruitTemperatura);
         ListaBluetooth = new ArrayList<>();
         btnconectar = (Switch) findViewById(R.id.btnconectar);
@@ -302,6 +304,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 txtTapa.setText(responseAdafruit.getTapa());
                 txtHumedad.setText(responseAdafruit.getHumedad());
                 txtTemperatura.setText(responseAdafruit.getTemperatura());
+                txtdistancia.setText(responseAdafruit.getDistancia());
             }
         }, new Response.ErrorListener() {
             @Override

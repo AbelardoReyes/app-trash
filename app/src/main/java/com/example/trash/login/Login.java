@@ -1,7 +1,11 @@
 package com.example.trash.login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 
@@ -10,6 +14,7 @@ import com.example.trash.R;
 import  com.example.trash.clases.Respuesta;
 
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +37,7 @@ public class Login extends AppCompatActivity {
     TextView registrarse;
     Button iniciarSesion;
     EditText email, password;
+    int requescode = 255;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +46,8 @@ public class Login extends AppCompatActivity {
         iniciarSesion = findViewById(R.id.iniciarSesion);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        cargarSession();
+        pedirPermisos();
+        //cargarSession();
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +126,40 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
         } else {
             Toast.makeText(this, "Inicia Sesion", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==requescode){
+            if(permissions.length>=0 &&grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this,"Permisos Aceptados",Toast.LENGTH_SHORT).show();
+                permisoLlamada();
+            }else{
+                if(ActivityCompat.shouldShowRequestPermissionRationale(Login.this, Manifest.permission.CALL_PHONE)){
+                    Toast.makeText(this,"Permisos Rechazado",Toast.LENGTH_SHORT).show();
+                    permisoLlamada();
+                }else{
+                    Toast.makeText(this,"Tu necesitas habilitar los permisos de manera manual",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+    private void pedirPermisos(){
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED)
+        {
+            Toast.makeText(this,"Ya tienes permisos",Toast.LENGTH_SHORT).show();
+        }else{
+            ActivityCompat.requestPermissions(Login.this,new String[]{Manifest.permission.RECEIVE_SMS},requescode);
+        }
+    }
+    private void permisoLlamada()
+    {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+        {
+            Toast.makeText(this,"Ya tienes permisos",Toast.LENGTH_SHORT).show();
+        }else{
+            ActivityCompat.requestPermissions(Login.this,new String[]{Manifest.permission.CALL_PHONE},256);
+            Toast.makeText(this,"Permisos Rechazado",Toast.LENGTH_SHORT).show();
         }
     }
 }

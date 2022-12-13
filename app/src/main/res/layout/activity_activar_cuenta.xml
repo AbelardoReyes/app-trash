@@ -60,7 +60,7 @@
         android:layout_height="80dp"
         android:background="#fafafa"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:paddingLeft="16dp"
         android:text="0"
         android:textColor="@color/black"
@@ -78,7 +78,7 @@
         android:layout_height="80dp"
         android:background="#fafafa"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:paddingLeft="16dp"
         android:text="0"
         android:textColor="@color/black"
@@ -96,7 +96,7 @@
         android:layout_height="80dp"
         android:background="#fafafa"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:paddingLeft="16dp"
         android:text="0"
         android:textColor="@color/black"
@@ -114,7 +114,7 @@
         android:layout_height="80dp"
         android:background="#fafafa"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:paddingLeft="16dp"
         android:text="0"
         android:textColor="@color/black"
@@ -138,27 +138,4 @@
         app:layout_constraintTop_toBottomOf="@+id/num2"
         app:layout_constraintVertical_bias="0.232" />
 
-    <Button
-        android:id="@+id/reenviarCodigo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="reenviar Codigo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enviarCodigo"
-        app:layout_constraintVertical_bias="0.065" />
-
-    <Button
-        android:id="@+id/nuevaCuenta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="nueva Cuenta"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reenviarCodigo"
-        app:layout_constraintVertical_bias="0.071" />
 </androidx.constraintlayout.widget.ConstraintLayout>
